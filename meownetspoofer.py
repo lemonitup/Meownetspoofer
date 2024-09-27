@@ -22,7 +22,7 @@ if change_ip.lower()== "yes":
     changed_IP_address=input("Enter your new ip address: ")
     old_ip_netmask=input("Enter your old ip netmask: ")
     changed_IP_netmask=input("Enter your new ip netmask: ")
-def user_file (old_MAC_address ,old_IP_address , old_ip_netmask):
+def user_file (old_MAC_address ,old_IP_address , old_ip_netmask): #to ask user if they want the previous ip/mac address to be outputted so they can remember
     file_name =input("Enter your text file: ")
     with open(file_name, "a") as file:
         file.write(f"Old MAC Address: {old_MAC_address}\n")
@@ -43,18 +43,18 @@ def changing_network(interface, old_MAC_address, changed_MAC_address, change_ip,
     print(f"Processing your old MAC address {old_MAC_address}, into your new MAC address {changed_MAC_address}")
     print(f"Changing interface {interface}")
 
-    # Bring the interface down to change the MAC address
+    # to bring the interface down to change the MAC address
     subprocess.run(["sudo", "ifconfig", interface, "down"], shell=False)
 
-    # Change the MAC address
+    # to change the mac address
     subprocess.run(["sudo", "ifconfig", interface, "hw", "ether", changed_MAC_address], shell=False)
 
-    # Bring the interface up
+    # to bring the interface up
     subprocess.run(["sudo", "ifconfig", interface, "up"], shell=False)
 
     print(f"Your MAC address has been changed to {changed_MAC_address}")
 
-    # If the user allows IP address change
+    # if user want to change or spoof ip address then it can change
     if change_ip.lower() == "yes":
         if old_IP_address and changed_IP_address and old_ip_netmask and changed_IP_netmask:
             print(f"Changing old network: {old_IP_address} and {old_ip_netmask} to new network: {changed_IP_address} and {changed_IP_netmask}")
@@ -64,3 +64,5 @@ def changing_network(interface, old_MAC_address, changed_MAC_address, change_ip,
     subprocess.run(["sudo", "ifconfig"], shell=False)
 #call the changing netowrk function.
 changing_network(interface, old_MAC_address, changed_MAC_address, change_ip, old_IP_address, changed_IP_address, old_ip_netmask, changed_IP_netmask)
+
+
