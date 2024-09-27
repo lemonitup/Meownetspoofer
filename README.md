@@ -1,0 +1,1 @@
+ The aim of this project is to learn and create a script for spoofing. Currently, MeowNetSpoofer is capable of changing both its IP address and MAC address, providing a practical tool for understanding and testing network spoofing techniques.
